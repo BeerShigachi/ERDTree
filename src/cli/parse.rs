@@ -1,15 +1,13 @@
 use std::env;
 
-pub fn parse_args() -> Option<String> {
+pub fn parse_args() -> Result<String, String> {
     let args: Vec<String> = env::args().skip(1).collect();
 
     match args.as_slice() {
-        [arg] => Some(arg.clone()),
+        [arg] => Ok(arg.clone()),
 
-        _ => {
-            eprintln!("Error: Expected exactly one argument.");
-            eprintln!("Usage: erd-tree <your_directory>");
-            std::process::exit(1);
-        }
+        _ => Err(
+            "Error: Expected exactly one argument.\nUsage: erd-tree <your_directory>".to_string(),
+        ),
     }
 }
