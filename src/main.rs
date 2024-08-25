@@ -1,5 +1,5 @@
 mod cli;
 
 fn main() {
-    cli::parse_args();
+    cli::process_args();
 }
