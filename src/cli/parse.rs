@@ -1,8 +1,4 @@
-use std::env;
-
-pub fn parse_args() -> Result<String, String> {
-    let args: Vec<String> = env::args().skip(1).collect();
-
+pub fn parse_args(args: Vec<String>) -> Result<String, String> {
     match args.as_slice() {
         [arg] => Ok(arg.clone()),
 

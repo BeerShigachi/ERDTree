@@ -1,11 +1,14 @@
 mod parse;
 mod validate;
 
+use std::env;
+
 use parse::parse_args;
 use validate::validate_path;
 
 pub fn process_args() -> String {
-    let arg = match parse_args() {
+    let args: Vec<String> = env::args().skip(1).collect();
+    let arg = match parse_args(args) {
         Ok(arg) => arg,
         Err(err) => {
             eprintln!("{}", err);
