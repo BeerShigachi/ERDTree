@@ -1,3 +1,6 @@
+mod cli;
+
 fn main() {
-    println!("Hello, world!");
+    cli::parse_args();
+    cli::validate_arg();
 }
