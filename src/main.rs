@@ -11,7 +11,7 @@ fn main() {
         }
     }
 
-    let _path = match cli::process_args() {
+    let _path = match cli::get_path_from_args() {
         Ok(arg) => arg,
         Err(err) => {
             error!("{}", err);
