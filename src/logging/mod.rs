@@ -1,7 +1,7 @@
-use log::LevelFilter;
+use log::{LevelFilter, SetLoggerError};
 use simplelog::*;
 
-pub fn init_logger() {
+pub fn init_logger() -> Result<(), SetLoggerError> {
     let config = ConfigBuilder::new()
         .set_level_color(Level::Error, Some(Color::Rgb(191, 0, 0)))
         .set_level_color(Level::Warn, Some(Color::Rgb(255, 127, 0)))
@@ -16,5 +16,4 @@ pub fn init_logger() {
         TerminalMode::Stdout,
         ColorChoice::Auto,
     )
-    .unwrap();
 }
