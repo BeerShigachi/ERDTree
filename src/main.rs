@@ -1,14 +1,21 @@
-use log::{error, trace};
+use log::{error, info};
 
 mod cli;
 mod logging;
 
 fn main() {
     match logging::init_logger() {
-        Ok(()) => trace!("Initialized logger"),
-        Err(e) => {
-            error!("Failed to initialize logger: {}", e)
+        Ok(()) => info!("Initialized logger"),
+        Err(err) => {
+            error!("Error: Failed to initialize logger: {}", err)
         }
     }
-    cli::process_args();
+
+    let _path = match cli::process_args() {
+        Ok(arg) => arg,
+        Err(err) => {
+            error!("{}", err);
+            std::process::exit(1);
+        }
+    };
 }
